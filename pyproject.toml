@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "lora-testing"
+version = "0.0.1"
+description = "LoRa testing different settings"
+authors = ["Shkoropad Yurii <lvivgeorg@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+lora-simulation = { git = "https://github.com/georgelviv/lora-simulation.git" }
+
+[tool.poetry.group.dev.dependencies]
+# Тут можна додавати dev-інструменти, наприклад:
+# pytest = "^8.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
