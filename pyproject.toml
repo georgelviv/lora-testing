@@ -10,8 +10,6 @@ python = ">=3.12"
 lora-simulation = { git = "https://github.com/georgelviv/lora-simulation.git" }
 
 [tool.poetry.group.dev.dependencies]
-# Тут можна додавати dev-інструменти, наприклад:
-# pytest = "^8.3.0"
 
 [build-system]
 requires = ["poetry-core"]
