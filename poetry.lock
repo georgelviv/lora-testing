@@ -43,7 +43,7 @@ pytest = ">=8.0"
 type = "git"
 url = "https://github.com/georgelviv/lora-simulation.git"
 reference = "HEAD"
-resolved_reference = "8719e83a5d065f63508ec6d275ad7a21240f1232"
+resolved_reference = "bef654ff348b313a23d429708055889ac4d868ed"
 
 [[package]]
 name = "numpy"
@@ -197,4 +197,4 @@ dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "b17678f5702e2214e161973650d4e66322149a22f58c7b95967a5ed4c7a16794"
+content-hash = "90a6c7262928629f9db9b3f6baed2442714d5cbab71ecb75506f14d6a23a2ea1"
