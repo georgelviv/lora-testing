@@ -1,4 +1,4 @@
-from lora_simulation.models import Config
+from lora_simulation import Config
 
 lora_configs: list[Config] = [
   { "SF": 12, "FQ": 878, "BW": 500.0, "CR": 8.0, "TP": 20, "IH": 0.0, "HS": 10.0, "PL": 10.0, "CL": 45.0, "RT": 1.0 },
@@ -27,3 +27,5 @@ lora_configs: list[Config] = [
   { "SF": 12, "FQ": 878, "BW": 500.0, "CR": 8.0, "TP": 20, "IH": 0.0, "HS": 10.0, "PL": 40.0, "CL": 45.0, "RT": 1.0 },
   { "SF": 12, "FQ": 878, "BW": 500.0, "CR": 8.0, "TP": 20, "IH": 0.0, "HS": 10.0, "PL": 50.0, "CL": 45.0, "RT": 1.0 }
 ]
+
+RESULTS_COLUMNS = ["BPS", "CHC", "DELAY", "RSSI", "SNR", "TOA", "ATT"]
