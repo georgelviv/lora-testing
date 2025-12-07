@@ -2,29 +2,35 @@ from pathlib import Path
 import csv
 import asyncio
 from typing import Iterable, Dict, Any
+import logging
 
 from .lora import LoraBase
 from .constants import RESULTS_COLUMNS, lora_configs
 
 
-def run_experiment(lora: LoraBase, experiment_name: str) -> Path:
+def run_experiment(lora: LoraBase, experiment_name: str, logger: logging.Logger) -> Path:
   config_keys = list(lora_configs[0].keys())
 
-  print(f"Starting experiment: {experiment_name}")
+  logger.info(f"Starting experiment: {experiment_name}")
 
-  async def _collect_rows():
+  async def _run():
+    await lora.start()
     rows = []
+    all = len(lora_configs)
     for idx, config in enumerate(lora_configs, start=1):
+      logger.info(f"Running {idx}/{all}")
       await lora.config_sync(idx, config)
       state = await lora.ping(idx)
+
 
       row = {key: config[key] for key in config_keys}
       row.update({key: state[key] for key in RESULTS_COLUMNS})
       rows.append(row)
     return rows
 
-  rows = asyncio.run(_collect_rows())
+  rows = asyncio.run(_run())
   output_path = save_results(rows, experiment_name)
+  lora.stop()
   print(f"Results stored at: {output_path}")
   return output_path
 

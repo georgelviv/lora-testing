@@ -46,6 +46,25 @@ reference = "HEAD"
 resolved_reference = "bef654ff348b313a23d429708055889ac4d868ed"
 
 [[package]]
+name = "lora-tunning-hardware"
+version = "0.1.0"
+description = "Python class for lora tunning firmware"
+optional = false
+python-versions = ">=3.12"
+groups = ["main"]
+files = []
+develop = false
+
+[package.dependencies]
+pyserial = ">=3.5,<4.0"
+
+[package.source]
+type = "git"
+url = "ssh://git@github.com/georgelviv/lora-tunning-hardware.git"
+reference = "HEAD"
+resolved_reference = "4292c7060f16c00aa50be9405a71dcdc09c3db06"
+
+[[package]]
 name = "numpy"
 version = "2.3.5"
 description = "Fundamental package for array computing in Python"
@@ -173,6 +192,21 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
+name = "pyserial"
+version = "3.5"
+description = "Python Serial Port Extension"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pyserial-3.5-py2.py3-none-any.whl", hash = "sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"},
+    {file = "pyserial-3.5.tar.gz", hash = "sha256:3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"},
+]
+
+[package.extras]
+cp2110 = ["hidapi"]
+
+[[package]]
 name = "pytest"
 version = "9.0.2"
 description = "pytest: simple powerful testing with Python"
@@ -197,4 +231,4 @@ dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "90a6c7262928629f9db9b3f6baed2442714d5cbab71ecb75506f14d6a23a2ea1"
+content-hash = "747f118313cb51ca92bdc876981b29b40d3a4997f2207546d069cbdd590369ba"
