@@ -21,14 +21,16 @@ def run_experiment(lora: LoraBase, description: ExperimentDescription, logger: l
     all = len(lora_configs)
     for idx, config in enumerate(lora_configs, start=1):
       logger.info(f"Running {idx}/{all}")
-      await lora.config_sync(idx, config)
-      state = await lora.ping(idx)
-
-
+      config_is_updated = await lora.config_sync(idx, config)
+      logger.info(f"Config is {"updated" if config_is_updated else "not updated"}")
       row = {key: config[key] for key in config_keys}
-      row.update({key: state[key] for key in RESULTS_COLUMNS})
+  
+      if config_is_updated:
+        state = await lora.ping(idx)
+        row.update({key: state[key] for key in RESULTS_COLUMNS})
+
       results.append(row)
-      await lora.stop()
+    await lora.stop()
     return results
 
   results = asyncio.run(_run())
@@ -44,7 +46,7 @@ def save_results(experiment_results: Iterable[Dict[str, Any]], description: Expe
   output_path = Path("results") / description["name"]
   results_path = output_path / "results.csv"
   description_path = output_path / "description.json"
-  output_path.parent.mkdir(exist_ok=True, parents=True)
+  output_path.mkdir(exist_ok=True, parents=True)
   fieldnames = list(rows[0].keys())
 
   with results_path.open("w", newline="") as csvfile:

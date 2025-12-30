@@ -22,5 +22,6 @@ class LoraSimulation(LoraBase):
   async def ping(self, id: int) -> State:
     return self.simulation.ping()
 
-  async def config_sync(self, id: int, params: Config) -> None:
-    return self.simulation.set_config(params)
+  async def config_sync(self, id: int, params: Config) -> bool:
+    self.simulation.set_config(params)
+    return True

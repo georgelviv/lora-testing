@@ -3,6 +3,11 @@
   "python-envs.defaultPackageManager": "ms-python.python:poetry",
   "python-envs.pythonProjects": [],
   "files.exclude": {
-    "**/__pycache__": true
-  }
+    "**/__pycache__": true,
+    ".venv": true
+  },
+  "cSpell.words": [
+    "RSSI",
+    "RTOA"
+  ]
 }

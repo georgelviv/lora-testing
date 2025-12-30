@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("LORA")
 
 def run_simulation(): 
-  env_model = LORA_SIMULATION_ENVIRONMENTS["open_field"]
+  env_model = LORA_SIMULATION_ENVIRONMENTS["suburban"]
   lora = LoraSimulation(
     logger=logger,
     env_model=env_model
@@ -23,13 +23,13 @@ def run_simulation():
 def run_hardware():
   lora = LoraHardware(logger, port_filter="/dev/cu.usbserial")
   description: ExperimentDescription = {
-    "name": "Lora Hardware",
-    "description": "close"
+    "name": "lora-hardware-close",
+    "description": "Close"
   }
   run_experiment(lora, description, logger)
 
 def main():
-  run_simulation()
+  run_hardware()
 
 if __name__ == "__main__":
   main()
