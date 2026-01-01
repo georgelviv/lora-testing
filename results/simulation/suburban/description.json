@@ -1,4 +1,5 @@
 {
   "description": "Light obstacles, trees, small buildings.",
-  "name": "suburban"
+  "name": "suburban",
+  "type": "simulation"
 }

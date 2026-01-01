@@ -15,13 +15,14 @@ CONFIG_UPDATE_ATTEMPTS = 100
 def run_experiment(
   lora: LoraBase,
   description: ExperimentDescription,
-  logger: logging.Logger
+  logger: logging.Logger,
+  with_delays: bool = True
 ) -> Path:
   config_keys = list(lora_configs[0].keys())
 
   logger.info(f"Starting experiment: {description['name']}")
 
-  output_path = Path("results") / description["name"]
+  output_path = Path("results") / description["type"] / description["name"]
   results_path = output_path / "results.csv"
   description_path = output_path / "description.json"
   output_path.mkdir(exist_ok=True, parents=True)
@@ -45,13 +46,15 @@ def run_experiment(
           f"Config is {'updated' if config_is_updated else 'not updated'}"
         )
 
-        time.sleep(2)
+        if with_delays:
+          time.sleep(2)
 
         if config_is_updated:
 
           for i in range(1, 5 + 1):
             state = await lora.ping(idx)
-            time.sleep(2)
+            if with_delays:
+              time.sleep(2)
 
             row: Dict[str, Any] = {key: config[key] for key in config_keys}
             row.update({key: state[key] for key in RESULTS_COLUMNS})
@@ -64,7 +67,8 @@ def run_experiment(
             )
           break
         else:
-          time.sleep(attempt ** 2)
+          if with_delays:
+            time.sleep(attempt ** 2)
 
     await lora.stop()
 

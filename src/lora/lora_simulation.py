@@ -2,7 +2,7 @@ import logging
 from .lora_base import LoraBase
 from lora_simulation import (
   LoraSimulation as Simulation, EnvironmentModel,
-  Config, State
+  Config, State, AreaType
 )
 
 class LoraSimulation(LoraBase):

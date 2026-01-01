@@ -43,7 +43,7 @@ pytest = ">=8.0"
 type = "git"
 url = "https://github.com/georgelviv/lora-simulation.git"
 reference = "HEAD"
-resolved_reference = "bef654ff348b313a23d429708055889ac4d868ed"
+resolved_reference = "af853affc4470f29d7599c0d357ccc5971ba3806"
 
 [[package]]
 name = "lora-tunning-hardware"
