@@ -35,7 +35,7 @@ def run_experiment(
     total = len(lora_configs)
 
     for idx, config in enumerate(lora_configs, start=1):
-      logger.info(f"Running {idx}/{total}")
+      logger.info(f"------------Running {idx}/{total}-------------- ")
 
       for attempt in range(1, CONFIG_UPDATE_ATTEMPTS + 1):
         logger.info(f"Config update attempt: {attempt}")

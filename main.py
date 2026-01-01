@@ -25,8 +25,8 @@ def run_hardware():
   # port_filter="/dev/cu.usbserial"
   lora = LoraHardware(logger, port_filter=port_filter)
   description: ExperimentDescription = {
-    "name": "lora-hardware-close",
-    "description": "Close"
+    "name": "lora-hardware-500-meters",
+    "description": "Long 500 meter with wall"
   }
   run_experiment(lora, description, logger)
 
