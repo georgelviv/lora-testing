@@ -9,6 +9,7 @@ readme = "README.md"
 python = ">=3.12"
 lora-simulation = { git = "https://github.com/georgelviv/lora-simulation.git" }
 lora-tunning-hardware = {git = "ssh://git@github.com/georgelviv/lora-tunning-hardware.git"}
+pandas = "^2.3.3"
 
 [tool.poetry.group.dev.dependencies]
 
