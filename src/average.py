@@ -1,20 +1,6 @@
 from pathlib import Path
 import pandas as pd
 
-def find_results():
-  results = []
-  scripts_dir = Path(__file__).resolve().parent
-  results_dir = scripts_dir.parent / "results"
-  filename = "results.csv"
-
-  files = list(results_dir.rglob(filename))
-
-  for f in files:
-    results.append(f)
-
-  return results
-
-
 def avg_results(csv_path):
   df = pd.read_csv(csv_path)
 
@@ -30,10 +16,3 @@ def avg_results(csv_path):
   )
   df_avg.to_csv(out_path, index=False)
   print(f"Saved: {out_path}")
-
-def run():
-  results = find_results()
-  for r in results:
-    avg_results(r)
-
-run()

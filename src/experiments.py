@@ -9,27 +9,17 @@ import pandas as pd
 from .lora import LoraBase
 from .constants import RESULTS_COLUMNS, lora_configs
 from .models import ExperimentDescription
+from .average import avg_results
 
 CONFIG_UPDATE_ATTEMPTS = 100
 
 def run_experiment(
   lora: LoraBase,
-  description: ExperimentDescription,
   logger: logging.Logger,
-  with_delays: bool = True
+  results_path: str,
+  with_delays: bool = True,
 ) -> Path:
   config_keys = list(lora_configs[0].keys())
-
-  logger.info(f"Starting experiment: {description['name']}")
-
-  output_path = Path("results") / description["type"] / description["name"]
-  results_path = output_path / "results.csv"
-  description_path = output_path / "description.json"
-  output_path.mkdir(exist_ok=True, parents=True)
-
-  if not description_path.exists():
-    with description_path.open("w") as f:
-      json.dump(description, f, indent=2, sort_keys=True)
 
   async def _run():
     await lora.start()
@@ -74,5 +64,25 @@ def run_experiment(
 
   asyncio.run(_run())
 
+def run(
+  lora: LoraBase,
+  description: ExperimentDescription,
+  logger: logging.Logger,
+  with_delays: bool = True
+):
+  
+  output_path = Path("results") / description["type"] / description["name"]
+  results_path = output_path / "results.csv"
+  description_path = output_path / "description.json"
+  output_path.mkdir(exist_ok=True, parents=True)
+
+  if not description_path.exists():
+    with description_path.open("w") as f:
+      json.dump(description, f, indent=2, sort_keys=True)
+
+  logger.info(f"Starting experiment: {description['name']}")
+
+  run_experiment(lora, logger, results_path, with_delays)
   logger.info(f"Results stored at: {output_path}")
-  return output_path
+
+  avg_results(results_path)

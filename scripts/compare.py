@@ -17,8 +17,8 @@ def find_avg():
 def compare_avg(csv_path):
   df = pd.read_csv(csv_path)
 
-  KEEP_COLS = [ "RTOA"]
-  # KEEP_COLS = ["SF", "BW", "CR", "TP", "PL", "DELAY", "TOA", "RTOA"]
+  # KEEP_COLS = [ "RTOA"]
+  KEEP_COLS = ["SF", "BW", "CR", "TP", "PL", "DELAY", "TOA", "RTOA"]
 
   df_compare = df[KEEP_COLS].copy()
   out_path = csv_path.with_name("compare.csv")
