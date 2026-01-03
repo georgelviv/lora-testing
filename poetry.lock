@@ -26,6 +26,25 @@ files = [
 ]
 
 [[package]]
+name = "lora-hardware-model"
+version = "0.1.0"
+description = "Python class for lora tunning firmware"
+optional = false
+python-versions = ">=3.12"
+groups = ["main"]
+files = []
+develop = false
+
+[package.dependencies]
+pyserial = ">=3.5,<4.0"
+
+[package.source]
+type = "git"
+url = "ssh://git@github.com/georgelviv/lora-hardware-model.git"
+reference = "HEAD"
+resolved_reference = "81db9df926a8cae6baae320f522c130a438df8ae"
+
+[[package]]
 name = "lora-simulation"
 version = "0.0.1"
 description = "LoRa physical layer"
@@ -44,25 +63,6 @@ type = "git"
 url = "https://github.com/georgelviv/lora-simulation.git"
 reference = "HEAD"
 resolved_reference = "af853affc4470f29d7599c0d357ccc5971ba3806"
-
-[[package]]
-name = "lora-tunning-hardware"
-version = "0.1.0"
-description = "Python class for lora tunning firmware"
-optional = false
-python-versions = ">=3.12"
-groups = ["main"]
-files = []
-develop = false
-
-[package.dependencies]
-pyserial = ">=3.5,<4.0"
-
-[package.source]
-type = "git"
-url = "ssh://git@github.com/georgelviv/lora-tunning-hardware.git"
-reference = "HEAD"
-resolved_reference = "453fb6c37d6f833290be9da534eff84452cb3681"
 
 [[package]]
 name = "numpy"
@@ -378,4 +378,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "4a490a1f968473d579ebf3cd709d7f07fc821d71d5df7fd39e149ff69819e55f"
+content-hash = "c7f1046a46b01a1abbc22389e5de4f8d7b8834706472f69691786d599c430977"

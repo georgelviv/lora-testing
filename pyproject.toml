@@ -8,10 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.12"
 lora-simulation = { git = "https://github.com/georgelviv/lora-simulation.git" }
-lora-tunning-hardware = {git = "ssh://git@github.com/georgelviv/lora-tunning-hardware.git"}
 pandas = "^2.3.3"
-
-[tool.poetry.group.dev.dependencies]
+lora-hardware-model = {git = "ssh://git@github.com/georgelviv/lora-hardware-model.git"}
 
 [build-system]
 requires = ["poetry-core"]

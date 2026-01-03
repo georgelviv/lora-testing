@@ -1,4 +1,4 @@
-from lora_tunning_hardware import modules_command
+from lora_hardware_model import modules_command
 
 ports = [
   "/dev/cu.usbserial-59680236201",
