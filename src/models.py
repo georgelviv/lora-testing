@@ -5,6 +5,7 @@ class ExperimentDescription(TypedDict):
   name: str
   description: str
   type: str
+  avg_result_file_name: str
 
 class State(TypedDict):
   DELAY: float

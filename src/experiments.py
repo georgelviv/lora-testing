@@ -51,7 +51,7 @@ def run_experiment(
               results_path,
               mode="a",
               index=False,
-              header=not results_path.exists()
+              header=results_path.stat().st_size == 0
             )
           break
         else:
@@ -70,9 +70,12 @@ def run(
 ):
   
   output_path = Path("results") / description["type"] / description["name"]
-  results_path = output_path / "results.csv"
+  results_file_name = "results.csv"
+  results_path = output_path / results_file_name
   description_path = output_path / "description.json"
   output_path.mkdir(exist_ok=True, parents=True)
+
+  results_path.write_text("")
 
   if not description_path.exists():
     with description_path.open("w") as f:
@@ -83,4 +86,4 @@ def run(
   run_experiment(lora_model, configs_suite, results_path, with_delays)
   logger.info(f"Results stored at: {output_path}")
 
-  avg_results(results_path)
+  avg_results(results_path, description)
