@@ -45,7 +45,7 @@ reference = "HEAD"
 resolved_reference = "81db9df926a8cae6baae320f522c130a438df8ae"
 
 [[package]]
-name = "lora-simulation"
+name = "lora-simulation-model"
 version = "0.0.1"
 description = "LoRa physical layer"
 optional = false
@@ -60,9 +60,9 @@ pytest = ">=8.0"
 
 [package.source]
 type = "git"
-url = "https://github.com/georgelviv/lora-simulation.git"
+url = "ssh://git@github.com/georgelviv/lora-simulation-model.git"
 reference = "HEAD"
-resolved_reference = "af853affc4470f29d7599c0d357ccc5971ba3806"
+resolved_reference = "a46cdda7d6857179b4688064c6240f4152c12cc1"
 
 [[package]]
 name = "numpy"
@@ -378,4 +378,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "c7f1046a46b01a1abbc22389e5de4f8d7b8834706472f69691786d599c430977"
+content-hash = "efd7787a3c1440bb9b91739fb8d5896662ab9df0a65dfc2b4181c8ec55a2cbe1"

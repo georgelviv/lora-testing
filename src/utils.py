@@ -1,5 +1,10 @@
 from pathlib import Path
 import pandas as pd
+import logging
+import json
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("LORA TESTING")
 
 def avg_results(csv_path):
   df = pd.read_csv(csv_path)
@@ -16,3 +21,12 @@ def avg_results(csv_path):
   )
   df_avg.to_csv(out_path, index=False)
   print(f"Saved: {out_path}")
+
+  
+def load_json(json_path: str):
+  path = Path(json_path)
+
+  with path.open("r", encoding="utf-8") as f:
+    data = json.load(f)
+
+  return data

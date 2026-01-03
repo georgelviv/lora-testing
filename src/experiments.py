@@ -1,37 +1,35 @@
 from pathlib import Path
 import asyncio
 import time
-from typing import Dict, Any
-import logging
+from typing import Dict, Any, List
 import json
 import pandas as pd
 
-from .lora import LoraBase
-from .constants import RESULTS_COLUMNS, lora_configs
-from .models import ExperimentDescription
-from .average import avg_results
+from .constants import RESULTS_COLUMNS
+from .models import ExperimentDescription, LoraModelBase, Config
+from .utils import avg_results, logger
 
 CONFIG_UPDATE_ATTEMPTS = 100
 
 def run_experiment(
-  lora: LoraBase,
-  logger: logging.Logger,
+  lora_model: LoraModelBase,
+  configs_suite: list[Config],
   results_path: str,
   with_delays: bool = True,
 ) -> Path:
-  config_keys = list(lora_configs[0].keys())
+  config_keys = list(configs_suite[0].keys())
 
   async def _run():
-    await lora.start()
-    total = len(lora_configs)
+    await lora_model.start()
+    total = len(configs_suite)
 
-    for idx, config in enumerate(lora_configs, start=1):
+    for idx, config in enumerate(configs_suite, start=1):
       logger.info(f"------------Running {idx}/{total}-------------- ")
 
       for attempt in range(1, CONFIG_UPDATE_ATTEMPTS + 1):
         logger.info(f"Config update attempt: {attempt}")
 
-        config_is_updated = await lora.config_sync(idx, config)
+        config_is_updated = await lora_model.config_sync(idx, config)
         logger.info(
           f"Config is {'updated' if config_is_updated else 'not updated'}"
         )
@@ -42,7 +40,7 @@ def run_experiment(
         if config_is_updated:
 
           for i in range(1, 5 + 1):
-            state = await lora.ping(idx)
+            state = await lora_model.ping(idx)
             if with_delays:
               time.sleep(2)
 
@@ -60,14 +58,14 @@ def run_experiment(
           if with_delays:
             time.sleep(attempt ** 2)
 
-    await lora.stop()
+    await lora_model.stop()
 
   asyncio.run(_run())
 
 def run(
-  lora: LoraBase,
+  lora_model: LoraModelBase,
   description: ExperimentDescription,
-  logger: logging.Logger,
+  configs_suite: list[Config],
   with_delays: bool = True
 ):
   
@@ -82,7 +80,7 @@ def run(
 
   logger.info(f"Starting experiment: {description['name']}")
 
-  run_experiment(lora, logger, results_path, with_delays)
+  run_experiment(lora_model, configs_suite, results_path, with_delays)
   logger.info(f"Results stored at: {output_path}")
 
   avg_results(results_path)
