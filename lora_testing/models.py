@@ -1,3 +1,4 @@
+from enum import StrEnum
 from typing import TypedDict
 from abc import ABC, abstractmethod
 
@@ -16,7 +17,7 @@ class State(TypedDict):
   CHC: float
   ATT: float
 
-class Config(TypedDict):
+class Action(TypedDict):
   SF: int
   FQ: int
   BW: int
@@ -28,7 +29,12 @@ class Config(TypedDict):
   CL: int
   RT: int
 
-class LoraModelBase(ABC):
+class LoraBase(ABC):
+  @property
+  @abstractmethod
+  def name(self) -> str:
+      pass
+
   @abstractmethod
   async def start(self):
     pass
@@ -38,7 +44,7 @@ class LoraModelBase(ABC):
     pass
 
   @abstractmethod
-  async def config_get(self) -> Config:
+  async def config_get(self) -> Action:
     pass
 
   @abstractmethod
@@ -48,3 +54,13 @@ class LoraModelBase(ABC):
   @abstractmethod
   async def config_sync(self, id: int, params) -> bool:
     pass
+
+class ArgEnv(StrEnum):
+  SIMULATION = 'simulation'
+  HARDWARE = 'hardware',
+  MATH = 'math'
+
+class Args(TypedDict):
+  env: ArgEnv
+  distance: int
+  with_delays: bool

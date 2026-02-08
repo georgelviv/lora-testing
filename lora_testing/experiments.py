@@ -6,14 +6,14 @@ import json
 import pandas as pd
 
 from .constants import RESULTS_COLUMNS
-from .models import ExperimentDescription, LoraModelBase, Config
+from .models import Args, ExperimentDescription, LoraBase, Action
 from .utils import avg_results, logger
 
 CONFIG_UPDATE_ATTEMPTS = 100
 
 def run_experiment(
-  lora_model: LoraModelBase,
-  configs_suite: list[Config],
+  lora_model: LoraBase,
+  configs_suite: list[Action],
   results_path: str,
   with_delays: bool = True,
 ) -> Path:
@@ -63,11 +63,12 @@ def run_experiment(
   asyncio.run(_run())
 
 def run(
-  lora_model: LoraModelBase,
+  lora_model: LoraBase,
   description: ExperimentDescription,
-  configs_suite: list[Config],
-  with_delays: bool = True
+  configs_suite: list[Action],
+  args: Args
 ):
+  with_delays: bool = args["with_delays"]
   
   output_path = Path("results") / description["type"] / description["name"]
   results_file_name = "results.csv"
