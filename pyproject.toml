@@ -11,6 +11,7 @@ pandas = "^2.3.3"
 lora-hardware-model = {git = "ssh://git@github.com/georgelviv/lora-hardware-model.git"}
 lora-simulation-model = {git = "git@github.com:georgelviv/lora-simulation-model.git"}
 lora-math-model = {git = "git@github.com:georgelviv/lora-math-model.git"}
+lora-common = {git = "ssh://git@github.com/georgelviv/lora-core.git"}
 
 [build-system]
 requires = ["poetry-core"]

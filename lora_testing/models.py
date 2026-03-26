@@ -1,6 +1,7 @@
 from enum import StrEnum
 from typing import TypedDict
 from abc import ABC, abstractmethod
+from lora_common import State, Action
 
 class ExperimentDescription(TypedDict):
   name: str
@@ -8,26 +9,6 @@ class ExperimentDescription(TypedDict):
   type: str
   avg_result_file_name: str
 
-class State(TypedDict):
-  DELAY: float
-  RSSI: float
-  SNR: float
-  TOA: float
-  BPS: float
-  CHC: float
-  ATT: float
-
-class Action(TypedDict):
-  SF: int
-  FQ: int
-  BW: int
-  CR: int
-  TP: int
-  IH: int
-  HS: int
-  PL: int
-  CL: int
-  RT: int
 
 class LoraBase(ABC):
   @property
@@ -64,3 +45,4 @@ class Args(TypedDict):
   env: ArgEnv
   distance: int
   with_delays: bool
+  port: str

@@ -6,7 +6,8 @@ import json
 import pandas as pd
 
 from .constants import RESULTS_COLUMNS
-from .models import Args, ExperimentDescription, LoraBase, Action
+from .models import Args, ExperimentDescription, LoraBase
+from lora_common import Action
 from .utils import avg_results, logger
 
 CONFIG_UPDATE_ATTEMPTS = 100

@@ -47,6 +47,7 @@ def read_args() -> Args:
   parser.add_argument("--env", type=str, default='simulation')
   parser.add_argument("--distance", type=int, default=100)
   parser.add_argument("--no_delays", action="store_false", dest="with_delays")
+  parser.add_argument("--port", type=str, default='/dev/cu.usbserial') 
 
   args = parser.parse_args()
 
@@ -54,6 +55,7 @@ def read_args() -> Args:
 
   return {
     'env': ArgEnv(args.env),
+    'port': args.port,
     'distance': int(args.distance),
     'with_delays': args.with_delays
   }
